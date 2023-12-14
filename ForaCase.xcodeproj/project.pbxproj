@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05BE1985109EB3D7F1DFA1EF /* Pods_ForaCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B476B06AB171F9528EB1F11F /* Pods_ForaCase.framework */; };
 		850FE0B92B2B0E8600C3360F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FE0B82B2B0E8600C3360F /* AppDelegate.swift */; };
 		850FE0BB2B2B0E8600C3360F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FE0BA2B2B0E8600C3360F /* SceneDelegate.swift */; };
-		850FE0BD2B2B0E8600C3360F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FE0BC2B2B0E8600C3360F /* ViewController.swift */; };
+		850FE0BD2B2B0E8600C3360F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850FE0BC2B2B0E8600C3360F /* HomeViewController.swift */; };
 		850FE0C02B2B0E8600C3360F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 850FE0BE2B2B0E8600C3360F /* Main.storyboard */; };
 		850FE0C22B2B0E8700C3360F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850FE0C12B2B0E8700C3360F /* Assets.xcassets */; };
 		850FE0C52B2B0E8700C3360F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 850FE0C32B2B0E8700C3360F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5AFF769F8FB9313477502879 /* Pods-ForaCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForaCase.debug.xcconfig"; path = "Target Support Files/Pods-ForaCase/Pods-ForaCase.debug.xcconfig"; sourceTree = "<group>"; };
+		657E907C9EA943B6A8B5E872 /* Pods-ForaCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ForaCase.release.xcconfig"; path = "Target Support Files/Pods-ForaCase/Pods-ForaCase.release.xcconfig"; sourceTree = "<group>"; };
 		850FE0B52B2B0E8600C3360F /* ForaCase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForaCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		850FE0B82B2B0E8600C3360F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		850FE0BA2B2B0E8600C3360F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		850FE0BC2B2B0E8600C3360F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		850FE0BC2B2B0E8600C3360F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		850FE0BF2B2B0E8600C3360F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		850FE0C12B2B0E8700C3360F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		850FE0C42B2B0E8700C3360F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		850FE0C62B2B0E8700C3360F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B476B06AB171F9528EB1F11F /* Pods_ForaCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ForaCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BE1985109EB3D7F1DFA1EF /* Pods_ForaCase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		345A1CE89FD23FA1C0DBD71E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B476B06AB171F9528EB1F11F /* Pods_ForaCase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5CFF46D753042A3F78871192 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5AFF769F8FB9313477502879 /* Pods-ForaCase.debug.xcconfig */,
+				657E907C9EA943B6A8B5E872 /* Pods-ForaCase.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		850FE0AC2B2B0E8600C3360F = {
 			isa = PBXGroup;
 			children = (
 				850FE0B72B2B0E8600C3360F /* ForaCase */,
 				850FE0B62B2B0E8600C3360F /* Products */,
+				5CFF46D753042A3F78871192 /* Pods */,
+				345A1CE89FD23FA1C0DBD71E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +80,39 @@
 		850FE0B72B2B0E8600C3360F /* ForaCase */ = {
 			isa = PBXGroup;
 			children = (
+				850FE0CC2B2B244A00C3360F /* Model */,
+				850FE0CE2B2B245F00C3360F /* View */,
+				850FE0CD2B2B245100C3360F /* ViewModel */,
 				850FE0B82B2B0E8600C3360F /* AppDelegate.swift */,
 				850FE0BA2B2B0E8600C3360F /* SceneDelegate.swift */,
-				850FE0BC2B2B0E8600C3360F /* ViewController.swift */,
+				850FE0BC2B2B0E8600C3360F /* HomeViewController.swift */,
 				850FE0BE2B2B0E8600C3360F /* Main.storyboard */,
 				850FE0C12B2B0E8700C3360F /* Assets.xcassets */,
 				850FE0C32B2B0E8700C3360F /* LaunchScreen.storyboard */,
 				850FE0C62B2B0E8700C3360F /* Info.plist */,
 			);
 			path = ForaCase;
+			sourceTree = "<group>";
+		};
+		850FE0CC2B2B244A00C3360F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		850FE0CD2B2B245100C3360F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		850FE0CE2B2B245F00C3360F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +122,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 850FE0C92B2B0E8700C3360F /* Build configuration list for PBXNativeTarget "ForaCase" */;
 			buildPhases = (
+				62266645B9F825BDDB48682B /* [CP] Check Pods Manifest.lock */,
 				850FE0B12B2B0E8600C3360F /* Sources */,
 				850FE0B22B2B0E8600C3360F /* Frameworks */,
 				850FE0B32B2B0E8600C3360F /* Resources */,
+				825602BDBEE06918531DAC84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,12 +183,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		62266645B9F825BDDB48682B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ForaCase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		825602BDBEE06918531DAC84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ForaCase/Pods-ForaCase-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ForaCase/Pods-ForaCase-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ForaCase/Pods-ForaCase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		850FE0B12B2B0E8600C3360F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				850FE0BD2B2B0E8600C3360F /* ViewController.swift in Sources */,
+				850FE0BD2B2B0E8600C3360F /* HomeViewController.swift in Sources */,
 				850FE0B92B2B0E8600C3360F /* AppDelegate.swift in Sources */,
 				850FE0BB2B2B0E8600C3360F /* SceneDelegate.swift in Sources */,
 			);
@@ -287,12 +379,14 @@
 		};
 		850FE0CA2B2B0E8700C3360F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AFF769F8FB9313477502879 /* Pods-ForaCase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y8F7U4Y956;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForaCase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -300,6 +394,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,12 +410,14 @@
 		};
 		850FE0CB2B2B0E8700C3360F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 657E907C9EA943B6A8B5E872 /* Pods-ForaCase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y8F7U4Y956;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ForaCase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -328,6 +425,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

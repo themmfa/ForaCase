@@ -1,0 +1,6 @@
+framework module Pods_ForaCase {
+  umbrella header "Pods-ForaCase-umbrella.h"
+
+  export *
+  module * { export * }
+}
