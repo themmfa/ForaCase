@@ -25,7 +25,7 @@ class FinanceApiService {
         return request
     }
     
-    func getAllStocks() async throws -> Stocks? {
+    func getAllStocksInfo() async throws -> Stocks? {
         guard let request = getRequest(url: "ForeksMobileInterviewSettings") else {return nil}
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
@@ -43,15 +43,25 @@ class FinanceApiService {
         return resultString
     }
     
-    func getSpecificStock(stockList:[Stock]) async throws -> Stock? {
-        guard let keys = seperateAllString(stockList: stockList) else { return nil}
-        guard let request = getRequest(url: "ForeksMobileInterview?fields=pdd,las&stcs=\(keys)") else {return nil}
-        
+    
+    func getAllStocks() async throws -> [Stock] {
         do {
+            var updatedStockList:[Stock] = []
+            guard var stocks = try await self.getAllStocksInfo() else {return []}
+            guard let keys = seperateAllString(stockList: stocks.mypageDefaults ?? []) else { return []}
+            guard let request = getRequest(url: "ForeksMobileInterview?fields=pdd,las&stcs=\(keys)") else {return []}
             let (data, _) = try await URLSession.shared.data(for: request)
             let decoder = JSONDecoder()
-            let response = try decoder.decode(Stock.self, from: data)
-            return response
+            let response = try decoder.decode(StockInfoList.self, from: data)
+            for stock in stocks.mypageDefaults ?? [] {
+                for newStock in response.l ?? [] {
+                    if stock.tke == newStock.tke {
+                        let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, pdd: newStock.pdd, las: newStock.las)
+                        updatedStockList.append(newestStock)
+                    }
+                }
+            }
+            return updatedStockList
         } catch {
             throw error
         }

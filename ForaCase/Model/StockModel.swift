@@ -8,17 +8,28 @@
 import Foundation
 
 // MARK: - Stocks
-struct Stocks: Codable {
+struct Stocks: Codable,Equatable {
     let mypageDefaults: [Stock]?
     let mypage: [FilterParameters]?
 }
 
 // MARK: - Mypage
-struct FilterParameters: Codable {
+struct FilterParameters: Codable,Equatable {
     let name, key: String?
 }
 
 // MARK: - MypageDefault
-struct Stock: Codable {
-    let cod, gro, tke, def,clo,pdd,las: String?
+struct Stock: Codable,Equatable {
+    var cod, gro, tke, def,clo,pdd,las: String?
+}
+
+// MARK: - Stocks
+struct StockInfoList: Codable {
+    let l: [UpdatedStockInfo]?
+    let z: String?
+}
+
+// MARK: - L
+struct UpdatedStockInfo: Codable {
+    let tke, clo, pdd, las: String?
 }

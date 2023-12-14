@@ -9,15 +9,17 @@ import DropDown
 import UIKit
 
 class HomeViewController: UIViewController {
+    let homeViewModel = HomeViewModel()
+    var activityIndicator = CustomActivityIndicator()
     
     let priceChangeDropdown: DropDown = {
-       let dropdownMenu = DropDown()
+        let dropdownMenu = DropDown()
         dropdownMenu.dataSource = ["Son","Fark","% Fark","Dusuk","Yuksek"]
         return dropdownMenu
     }()
     
     let priceDifferenceDropdown: DropDown = {
-       let dropdownMenu = DropDown()
+        let dropdownMenu = DropDown()
         dropdownMenu.dataSource = ["Son","Fark","% Fark","Dusuk","Yuksek"]
         return dropdownMenu
     }()
@@ -36,9 +38,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var priceDifferenceDropdownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
+        homeViewModel.delegate = self
         priceChangeSelectionAction()
         priceDifferenceSelectionAction()
+        self.activityIndicator.startAnimating(in: self)
+        layout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        homeViewModel.getAllStocks()
     }
 }
 
@@ -59,7 +67,22 @@ extension HomeViewController {
             self.priceDifferenceDropdownButton.setTitle(item, for: .normal)
         }
     }
-    
-    
+}
+
+extension HomeViewController:HomeViewModelDelegate {
+    func getAllStocks(_ response: ApiResponse) {
+        if response.isSuccess {
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+            }
+        }
+        
+        if !response.isSuccess {
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+                print(response.errorMessage)
+            }
+        }
+    }
 }
 
