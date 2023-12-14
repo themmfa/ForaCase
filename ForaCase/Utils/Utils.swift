@@ -10,9 +10,7 @@ import Foundation
 class Utils {
     static let shared = Utils()
     
-    private init(){
-        
-    }
+    private init(){}
     
     func getNewData(stocks:[Stock]?,newStocks:[UpdatedStockInfo]?)->[Stock]{
         var updatedList:[Stock] = []

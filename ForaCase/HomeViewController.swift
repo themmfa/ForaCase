@@ -104,15 +104,23 @@ extension HomeViewController:HomeViewModelDelegate {
 
 extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return homeViewModel.allStocks?.count ?? 0
+        return homeViewModel.allStocks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
-        cell.stockNameLabel.text = homeViewModel.allStocks?[indexPath.row].cod ?? ""
-        cell.lastChangedTimeLabel.text = homeViewModel.allStocks?[indexPath.row].clo ?? ""
-        cell.lastPriceTable.text = homeViewModel.allStocks?[indexPath.row].las ?? ""
-        cell.differenceLabel.text = homeViewModel.allStocks?[indexPath.row].las ?? ""
+        cell.stockNameLabel.text = homeViewModel.allStocks[indexPath.row].cod ?? ""
+        cell.lastChangedTimeLabel.text = homeViewModel.allStocks[indexPath.row].clo ?? ""
+        cell.lastPriceTable.text = homeViewModel.allStocks[indexPath.row].las ?? ""
+        let difference = homeViewModel.allStocks[indexPath.row].difference ?? 0.0
+        cell.differenceLabel.text = String(format: "%.4f", difference)
+        if difference == 0.0 {
+            cell.arrowImageView.backgroundColor = .gray
+        }else if difference > 0{
+            cell.arrowImageView.backgroundColor = .green
+        }else{
+            cell.arrowImageView.backgroundColor = .red
+        }
         return cell
     }
     

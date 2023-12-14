@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "closure #1 in HomeViewModel.getAllStocks():HomeViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
