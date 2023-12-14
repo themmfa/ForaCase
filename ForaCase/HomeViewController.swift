@@ -12,29 +12,20 @@ class HomeViewController: UIViewController {
     let homeViewModel = HomeViewModel()
     var activityIndicator = CustomActivityIndicator()
     var timer:Timer?
+    var selectedData:String = "Fark"
     
     deinit {
         timer?.invalidate()
     }
     
-    let priceChangeDropdown: DropDown = {
-        let dropdownMenu = DropDown()
-        dropdownMenu.dataSource = ["Son","Fark","% Fark","Dusuk","Yuksek"]
-        return dropdownMenu
-    }()
-    
     let priceDifferenceDropdown: DropDown = {
         let dropdownMenu = DropDown()
-        dropdownMenu.dataSource = ["Son","Fark","% Fark","Dusuk","Yuksek"]
+        dropdownMenu.dataSource = ["Fark","%Fark"]
         return dropdownMenu
     }()
     
     @IBOutlet weak var dropdownView: UIView!
     
-    @IBOutlet weak var priceChangeDropdownButton: UIButton!
-    @IBAction func priceChangeButtonClicked(_ sender: Any) {
-        priceChangeDropdown.show()
-    }
     
     @IBAction func priceDifferenceButtonClicked(_ sender: Any) {
         priceDifferenceDropdown.show()
@@ -48,7 +39,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel.delegate = self
-        priceChangeSelectionAction()
         priceDifferenceSelectionAction()
         layout()
         customCollectionView.dataSource = self
@@ -68,19 +58,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     func layout(){
-        priceChangeDropdown.anchorView = dropdownView
         priceDifferenceDropdown.anchorView = dropdownView
+        priceDifferenceDropdownButton.setTitle(selectedData, for: .normal)
     }
-    
-    func priceChangeSelectionAction(){
-        priceChangeDropdown.selectionAction = { index, item in
-            self.priceChangeDropdownButton.setTitle(item, for: .normal)
-        }
-    }
-    
+
     func priceDifferenceSelectionAction(){
         priceDifferenceDropdown.selectionAction = { index, item in
             self.priceDifferenceDropdownButton.setTitle(item, for: .normal)
+            self.selectedData = item
         }
     }
 }
@@ -112,8 +97,8 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.stockNameLabel.text = homeViewModel.allStocks[indexPath.row].cod ?? ""
         cell.lastChangedTimeLabel.text = homeViewModel.allStocks[indexPath.row].clo ?? ""
         cell.lastPriceTable.text = homeViewModel.allStocks[indexPath.row].las ?? ""
-        let difference = homeViewModel.allStocks[indexPath.row].difference ?? 0.0
-        cell.differenceLabel.text = String(format: "%.4f", difference)
+        let difference = Utils.shared.getSelectedData(selectedData: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
+        cell.differenceLabel.text = "\(selectedData == "Fark" ? "" : "%")\(String(format: "%.4f", difference))"
         if difference == 0.0 {
             cell.differenceLabel.textColor = .gray
             cell.arrowImageView.backgroundColor = .gray

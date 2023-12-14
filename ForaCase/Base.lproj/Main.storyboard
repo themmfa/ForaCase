@@ -24,14 +24,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-sp-T2m">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESx-zI-Miu">
-                                                <rect key="frame" x="258.66666666666669" y="0.0" width="53.666666666666686" height="80"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Son"/>
-                                                <connections>
-                                                    <action selector="priceChangeButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rVs-3O-1S2"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tB-9a-zJx">
                                                 <rect key="frame" x="324.33333333333331" y="0.0" width="56.666666666666686" height="80"/>
                                                 <state key="normal" title="Button"/>
@@ -49,14 +41,11 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="ESx-zI-Miu" firstAttribute="top" secondItem="1hD-sp-T2m" secondAttribute="top" id="0Nd-si-Mbj"/>
-                                            <constraint firstItem="8tB-9a-zJx" firstAttribute="leading" secondItem="ESx-zI-Miu" secondAttribute="trailing" constant="12" id="0dI-3s-5tY"/>
                                             <constraint firstAttribute="height" constant="80" id="2G9-yW-MpL"/>
                                             <constraint firstItem="8tB-9a-zJx" firstAttribute="top" secondItem="1hD-sp-T2m" secondAttribute="top" id="4L2-9d-Lbp"/>
                                             <constraint firstAttribute="bottom" secondItem="8tB-9a-zJx" secondAttribute="bottom" id="9PQ-sM-BcR"/>
                                             <constraint firstItem="sBE-fh-ITc" firstAttribute="top" secondItem="1hD-sp-T2m" secondAttribute="top" id="H4o-7A-Pr1"/>
                                             <constraint firstAttribute="bottom" secondItem="sBE-fh-ITc" secondAttribute="bottom" id="Qr1-Mj-FgY"/>
-                                            <constraint firstAttribute="bottom" secondItem="ESx-zI-Miu" secondAttribute="bottom" id="czm-KR-RdK"/>
                                             <constraint firstAttribute="trailing" secondItem="8tB-9a-zJx" secondAttribute="trailing" constant="12" id="hwA-vD-5iU"/>
                                             <constraint firstItem="sBE-fh-ITc" firstAttribute="leading" secondItem="1hD-sp-T2m" secondAttribute="leading" constant="12" id="xW9-NU-fXr"/>
                                         </constraints>
@@ -167,7 +156,6 @@
                     <connections>
                         <outlet property="customCollectionView" destination="yTi-6P-OKu" id="G4W-be-fCs"/>
                         <outlet property="dropdownView" destination="1hD-sp-T2m" id="hLk-GH-g0k"/>
-                        <outlet property="priceChangeDropdownButton" destination="ESx-zI-Miu" id="Rwi-Dd-ghT"/>
                         <outlet property="priceDifferenceDropdownButton" destination="8tB-9a-zJx" id="stq-Yo-tcz"/>
                     </connections>
                 </viewController>

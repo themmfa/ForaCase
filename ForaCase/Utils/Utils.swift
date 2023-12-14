@@ -24,4 +24,28 @@ class Utils {
         }
         return updatedList
     }
+    
+    func calculateDifference(index:Int,allStocks:[Stock],currentStock:Stock)->Double{
+        let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
+        let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
+        let difference = (Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)
+        return difference
+    }
+    
+    func calculateDifferencePercentage(index:Int,allStocks:[Stock],currentStock:Stock)->Double{
+        let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
+        let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
+        let step1 = (Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)
+        let step2 = ((Double(previousLast) ?? 0.0) + (Double(currentLast) ?? 0.0))/2
+        let differencePercentage = (step1/step2) * 100
+        return differencePercentage
+    }
+    
+    func getSelectedData(selectedData:String,homeViewModel:HomeViewModel,index:Int)->Double{
+        if selectedData == "Fark"{
+            return homeViewModel.allStocks[index].difference ?? 0.0
+        }else{
+            return homeViewModel.allStocks[index].differencePercentage ?? 0.0
+        }
+    }
 }

@@ -22,6 +22,7 @@ struct FilterParameters: Codable,Equatable {
 struct Stock: Codable,Equatable {
     var cod, gro, tke, def,clo,pdd,las: String?
     var difference:Double?
+    var differencePercentage:Double?
 }
 
 // MARK: - Stocks
