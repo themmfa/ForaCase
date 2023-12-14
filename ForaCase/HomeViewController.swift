@@ -41,11 +41,11 @@ class HomeViewController: UIViewController {
         homeViewModel.delegate = self
         priceChangeSelectionAction()
         priceDifferenceSelectionAction()
-        self.activityIndicator.startAnimating(in: self)
         layout()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        activityIndicator.startAnimating(in: self)
         homeViewModel.getAllStocks()
     }
 }
@@ -80,7 +80,6 @@ extension HomeViewController:HomeViewModelDelegate {
         if !response.isSuccess {
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
-                print(response.errorMessage)
             }
         }
     }
