@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         activityIndicator.startAnimating(in: self)
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(refreshList), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(refreshList), userInfo: nil, repeats: true)
         homeViewModel.getAllStocks()
     }
     

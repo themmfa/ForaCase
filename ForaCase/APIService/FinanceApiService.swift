@@ -46,7 +46,7 @@ class FinanceApiService {
     
     func getAllStocks() async throws -> [Stock] {
         do {
-            guard var stocks = try await self.getAllStocksInfo() else {return []}
+            guard let stocks = try await self.getAllStocksInfo() else {return []}
             guard let keys = seperateAllString(stockList: stocks.mypageDefaults ?? []) else { return []}
             guard let request = getRequest(url: "ForeksMobileInterview?fields=pdd,las&stcs=\(keys)") else {return []}
             let (data, _) = try await URLSession.shared.data(for: request)
