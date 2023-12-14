@@ -115,13 +115,16 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         let difference = homeViewModel.allStocks[indexPath.row].difference ?? 0.0
         cell.differenceLabel.text = String(format: "%.4f", difference)
         if difference == 0.0 {
+            cell.differenceLabel.textColor = .gray
             cell.arrowImageView.backgroundColor = .gray
             cell.arrowImageView.image = nil
         }else if difference > 0{
             cell.arrowImageView.backgroundColor = .green
+            cell.differenceLabel.textColor = .green
             cell.arrowImageView.image = UIImage(systemName: "arrow.up")
         }else{
             cell.arrowImageView.backgroundColor = .red
+            cell.differenceLabel.textColor = .red
             cell.arrowImageView.image = UIImage(systemName: "arrow.down")
         }
         return cell
