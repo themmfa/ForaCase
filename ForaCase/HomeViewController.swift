@@ -116,10 +116,13 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.differenceLabel.text = String(format: "%.4f", difference)
         if difference == 0.0 {
             cell.arrowImageView.backgroundColor = .gray
+            cell.arrowImageView.image = nil
         }else if difference > 0{
             cell.arrowImageView.backgroundColor = .green
+            cell.arrowImageView.image = UIImage(systemName: "arrow.up")
         }else{
             cell.arrowImageView.backgroundColor = .red
+            cell.arrowImageView.image = UIImage(systemName: "arrow.down")
         }
         return cell
     }

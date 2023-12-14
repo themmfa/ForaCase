@@ -25,6 +25,7 @@ class HomeViewModel {
                     allStocks = currentStocks
                 }else{
                     for currentStock in currentStocks{
+                        // TODO(ferdogan): Refactor here
                         if let index = allStocks.firstIndex(where: { $0.tke == currentStock.tke }) {
                             let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
                             let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
