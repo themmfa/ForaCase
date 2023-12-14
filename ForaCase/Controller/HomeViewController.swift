@@ -68,6 +68,15 @@ extension HomeViewController {
             self.selectedData = item
         }
     }
+    
+    func showErrorDialog(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { action in
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.refreshList), userInfo: nil, repeats: true)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController:HomeViewModelDelegate {
@@ -82,6 +91,8 @@ extension HomeViewController:HomeViewModelDelegate {
         if !response.isSuccess {
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
+                self?.timer?.invalidate()
+                self?.showErrorDialog(message: response.errorMessage ?? "")
             }
         }
     }
