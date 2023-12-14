@@ -46,22 +46,13 @@ class FinanceApiService {
     
     func getAllStocks() async throws -> [Stock] {
         do {
-            var updatedStockList:[Stock] = []
             guard var stocks = try await self.getAllStocksInfo() else {return []}
             guard let keys = seperateAllString(stockList: stocks.mypageDefaults ?? []) else { return []}
             guard let request = getRequest(url: "ForeksMobileInterview?fields=pdd,las&stcs=\(keys)") else {return []}
             let (data, _) = try await URLSession.shared.data(for: request)
             let decoder = JSONDecoder()
             let response = try decoder.decode(StockInfoList.self, from: data)
-            for stock in stocks.mypageDefaults ?? [] {
-                for newStock in response.l ?? [] {
-                    if stock.tke == newStock.tke {
-                        let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, pdd: newStock.pdd, las: newStock.las)
-                        updatedStockList.append(newestStock)
-                    }
-                }
-            }
-            return updatedStockList
+            return Utils.shared.getNewData(stocks: stocks.mypageDefaults, newStocks: response.l)
         } catch {
             throw error
         }
