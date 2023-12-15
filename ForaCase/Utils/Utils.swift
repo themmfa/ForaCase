@@ -31,52 +31,27 @@ class Utils {
         return Double(replacedString)
     }
     
-    func getSelectedItemValue(selectedItemKey:String,homeViewModel:HomeViewModel,index:Int)->(Double?,String){
-        var dou:Double?
-        var str:String = "0.0"
-        switch selectedItemKey {
-        case "las":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].las)
-            str = homeViewModel.allStocks[index].las ?? " - "
+    func getSelectedItemValue(selectedItemKey: String, homeViewModel: HomeViewModel, index: Int) -> (Double?, String) {
+        let stock = homeViewModel.allStocks[index]
 
-        case "pdd":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].pdd)
-            str = "%\(String(describing: homeViewModel.allStocks[index].pdd ?? " - "))"
-        case "ddi":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].ddi)
-            str = homeViewModel.allStocks[index].ddi ?? " - "
-        
-        case "low":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].low)
-            str = homeViewModel.allStocks[index].low ?? " - "
-            
-        case "high":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].hig)
-            str = homeViewModel.allStocks[index].hig ?? " - "
-            
-        case "buy":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].buy)
-            str = homeViewModel.allStocks[index].buy ?? " - "
-        case "sel":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].sel)
-            str = homeViewModel.allStocks[index].sel ?? " - "
-        case "pdc":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].pdc)
-            str = homeViewModel.allStocks[index].pdc ?? " - "
-        case "cei":
-             dou = convertToDouble(doubleString: homeViewModel.allStocks[index].cei)
-            str = homeViewModel.allStocks[index].cei ?? " - "
-        case "flo":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].flo)
-            str = homeViewModel.allStocks[index].flo ?? " - "
-        case "gco":
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].gco)
-            str = homeViewModel.allStocks[index].gco ?? " - "
-        default:
-            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].las)
-            str = homeViewModel.allStocks[index].las ?? " - "
+        var dou: Double?
+        var str: String = " - "
+
+        switch selectedItemKey {
+        case "las": (dou, str) = (convertToDouble(doubleString: stock.las), stock.las ?? str)
+        case "pdd": (dou, str) = (convertToDouble(doubleString: stock.pdd), "%\(stock.pdd ?? str)")
+        case "ddi": (dou, str) = (convertToDouble(doubleString: stock.ddi), stock.ddi ?? str)
+        case "low": (dou, str) = (convertToDouble(doubleString: stock.low), stock.low ?? str)
+        case "high": (dou, str) = (convertToDouble(doubleString: stock.hig), stock.hig ?? str)
+        case "buy": (dou, str) = (convertToDouble(doubleString: stock.buy), stock.buy ?? str)
+        case "sel": (dou, str) = (convertToDouble(doubleString: stock.sel), stock.sel ?? str)
+        case "pdc": (dou, str) = (convertToDouble(doubleString: stock.pdc), stock.pdc ?? str)
+        case "cei": (dou, str) = (convertToDouble(doubleString: stock.cei), stock.cei ?? str)
+        case "flo": (dou, str) = (convertToDouble(doubleString: stock.flo), stock.flo ?? str)
+        case "gco": (dou, str) = (convertToDouble(doubleString: stock.gco), stock.gco ?? str)
+        default: (dou, str) = (convertToDouble(doubleString: stock.las), stock.las ?? str)
         }
-        
-        return (dou,str)
+
+        return (dou, str)
     }
 }
