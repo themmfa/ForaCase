@@ -56,14 +56,14 @@ class HomeViewModel {
         }
     }
     
-    func handleUIChanges(cell: CustomCollectionViewCell, difference: Double?,stringToDouble:String?) {
+    func handleUIChanges(cell: CustomCollectionViewCell, difference: Double?,stringToDouble:String?,selectedItem:String) {
         guard let difference = difference, var stringToDouble = stringToDouble else {
             setDefaultUI(cell: cell)
             return
         }
         stringToDouble.removeAll(where: ({$0 == "%"}))
         let doubleValue = Utils.shared.convertToDouble(doubleString: stringToDouble)
-        cell.differenceLabel.textColor = (doubleValue ?? 0.0 > 0) ? .green : (doubleValue ?? 0.0 < 0) ? .red : .gray
+        cell.differenceLabel.textColor = selectedItem == "las" ? .gray : (doubleValue ?? 0.0 > 0) ? .green : (doubleValue ?? 0.0 < 0) ? .red : .gray
         cell.arrowImageView.backgroundColor = (difference > 0) ? .green : (difference < 0) ? .red : .gray
         cell.arrowImageView.image = (difference > 0) ? UIImage(systemName: "arrow.up") : (difference < 0) ? UIImage(systemName: "arrow.down") : nil
     }
