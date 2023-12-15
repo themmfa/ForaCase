@@ -40,7 +40,8 @@ class HomeViewModel {
                             let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
                             let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
                             let difference = (Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)
-                            let newestStock = Stock(cod: currentStock.cod, gro: currentStock.gro, tke: currentStock.tke, def: currentStock.def, clo: currentStock.clo, flo: currentStock.flo, cei: currentStock.cei, pdd: currentStock.pdd, low: currentStock.low, sel: currentStock.sel, buy: currentStock.buy, ddi: currentStock.ddi, hig: currentStock.hig, las: currentStock.las, pdc: currentStock.pdc,gco: currentStock.gco,difference: difference)
+                            let ifClockChanged = allStocks[index].clo != currentStock.clo
+                            let newestStock = Stock(cod: currentStock.cod, gro: currentStock.gro, tke: currentStock.tke, def: currentStock.def, clo: currentStock.clo, flo: currentStock.flo, cei: currentStock.cei, pdd: currentStock.pdd, low: currentStock.low, sel: currentStock.sel, buy: currentStock.buy, ddi: currentStock.ddi, hig: currentStock.hig, las: currentStock.las, pdc: currentStock.pdc,gco: currentStock.gco,difference: difference,isClockChanged: ifClockChanged)
                             currentStocks[index] = newestStock
                         } else {
                             continue

@@ -17,7 +17,7 @@ class Utils {
         for stock in stocks ?? [] {
             for newStock in newStocks ?? [] {
                 if stock.tke == newStock.tke {
-                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, flo: newStock.flo, cei: newStock.cei, pdd: newStock.pdd, low: newStock.low, sel: newStock.sel, buy: newStock.buy, ddi: newStock.ddi, hig: newStock.hig, las: newStock.las, pdc: newStock.pdc,gco: stock.gco,difference: stock.difference)
+                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, flo: newStock.flo, cei: newStock.cei, pdd: newStock.pdd, low: newStock.low, sel: newStock.sel, buy: newStock.buy, ddi: newStock.ddi, hig: newStock.hig, las: newStock.las, pdc: newStock.pdc,gco: stock.gco,difference: stock.difference,isClockChanged: stock.isClockChanged)
                     updatedList.append(newestStock)
                 }
             }

@@ -24,6 +24,7 @@ struct Stock: Codable,Equatable {
     let pdd, low, sel, buy: String?
     let ddi, hig, las, pdc, gco: String?
     let difference:Double?
+    let isClockChanged:Bool?
 }
 
 // MARK: - Stocks

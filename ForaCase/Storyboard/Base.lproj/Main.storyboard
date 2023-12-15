@@ -130,6 +130,7 @@
                                                 <size key="customSize" width="393" height="80"/>
                                                 <connections>
                                                     <outlet property="arrowImageView" destination="b1g-hD-qVe" id="Z7s-KR-UAe"/>
+                                                    <outlet property="cellView" destination="b3s-qm-l0p" id="jgp-65-bfV"/>
                                                     <outlet property="differenceLabel" destination="iNY-qD-B8h" id="Nyp-Yq-JZn"/>
                                                     <outlet property="lastChangedTimeLabel" destination="oEN-qL-OlT" id="ftL-tb-brt"/>
                                                     <outlet property="lastPriceTable" destination="EgQ-Du-S9o" id="JHD-j9-cSd"/>

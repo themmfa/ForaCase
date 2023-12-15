@@ -111,6 +111,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.lastPriceTable.text = homeViewModel.allStocks[indexPath.row].las ?? ""
         var differenceString = Utils.shared.getSelectedItemValue(selectedItemKey: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
         cell.differenceLabel.text = differenceString 
+        cell.cellView.layer.opacity = homeViewModel.allStocks[indexPath.row].isClockChanged ?? false ? 1 : 0.6
         homeViewModel.handleUIChanges(cell: cell, difference: homeViewModel.allStocks[indexPath.row].difference,stringToDouble: differenceString)
         return cell
     }
