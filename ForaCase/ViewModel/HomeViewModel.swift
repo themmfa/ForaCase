@@ -39,25 +39,20 @@ class HomeViewModel {
         }
     }
     
-    func handleUIChanges(cell:CustomCollectionViewCell,difference:Double?){
+    func handleUIChanges(cell: CustomCollectionViewCell, difference: Double?) {
         guard let difference = difference else {
-            cell.differenceLabel.textColor = .gray
-            cell.arrowImageView.backgroundColor = .gray
-            cell.arrowImageView.image = nil
+            setDefaultUI(cell: cell)
             return
         }
-        if difference == 0.0 {
-            cell.differenceLabel.textColor = .gray
-            cell.arrowImageView.backgroundColor = .gray
-            cell.arrowImageView.image = nil
-        }else if difference > 0{
-            cell.arrowImageView.backgroundColor = .green
-            cell.differenceLabel.textColor = .green
-            cell.arrowImageView.image = UIImage(systemName: "arrow.up")
-        }else{
-            cell.arrowImageView.backgroundColor = .red
-            cell.differenceLabel.textColor = .red
-            cell.arrowImageView.image = UIImage(systemName: "arrow.down")
-        }
+
+        cell.arrowImageView.backgroundColor = (difference > 0) ? .green : (difference < 0) ? .red : .gray
+        cell.differenceLabel.textColor = (difference > 0) ? .green : (difference < 0) ? .red : .gray
+        cell.arrowImageView.image = (difference > 0) ? UIImage(systemName: "arrow.up") : (difference < 0) ? UIImage(systemName: "arrow.down") : nil
+    }
+
+    func setDefaultUI(cell: CustomCollectionViewCell) {
+        cell.differenceLabel.textColor = .gray
+        cell.arrowImageView.backgroundColor = .gray
+        cell.arrowImageView.image = nil
     }
 }
