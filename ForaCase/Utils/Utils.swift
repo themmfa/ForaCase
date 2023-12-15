@@ -17,7 +17,7 @@ class Utils {
         for stock in stocks ?? [] {
             for newStock in newStocks ?? [] {
                 if stock.tke == newStock.tke {
-                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, pdd: newStock.pdd, las: newStock.las)
+                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, flo: newStock.flo, cei: newStock.cei, pdd: newStock.pdd, low: newStock.low, sel: newStock.sel, buy: newStock.buy, ddi: newStock.ddi, hig: newStock.hig, las: newStock.las, pdc: newStock.pdc,gco: stock.gco)
                     updatedList.append(newestStock)
                 }
             }
@@ -25,27 +25,58 @@ class Utils {
         return updatedList
     }
     
-    func calculateDifference(index:Int,allStocks:[Stock],currentStock:Stock)->Double{
-        let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
-        let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
-        let difference = (Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)
-        return difference
+    func convertToDouble(doubleString:String?)->Double?{
+        guard let value = doubleString else{return nil}
+        let replacedString = value.replacingOccurrences(of: ",", with: ".")
+        return Double(replacedString)
     }
     
-    func calculateDifferencePercentage(index:Int,allStocks:[Stock],currentStock:Stock)->Double{
-        let previousLast = allStocks[index].las == nil ? "0.0" : allStocks[index].las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
-        let currentLast = currentStock.las == nil ? "0.0" : currentStock.las!.replacingOccurrences(of: ".", with: "").replacingOccurrences(of: ",", with: ".")
-        let step1 = (Double(previousLast) ?? 0.0) - (Double(currentLast) ?? 0.0)
-        let step2 = ((Double(previousLast) ?? 0.0) + (Double(currentLast) ?? 0.0))/2
-        let differencePercentage = (step1/step2) * 100
-        return differencePercentage
-    }
-    
-    func getSelectedData(selectedData:String,homeViewModel:HomeViewModel,index:Int)->Double{
-        if selectedData == "Fark"{
-            return homeViewModel.allStocks[index].difference ?? 0.0
-        }else{
-            return homeViewModel.allStocks[index].differencePercentage ?? 0.0
+    func getSelectedItemValue(selectedItemKey:String,homeViewModel:HomeViewModel,index:Int)->(Double?,String){
+        var dou:Double?
+        var str:String = "0.0"
+        switch selectedItemKey {
+        case "las":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].las)
+            str = homeViewModel.allStocks[index].las ?? " - "
+
+        case "pdd":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].pdd)
+            str = "%\(String(describing: homeViewModel.allStocks[index].pdd ?? " - "))"
+        case "ddi":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].ddi)
+            str = homeViewModel.allStocks[index].ddi ?? " - "
+        
+        case "low":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].low)
+            str = homeViewModel.allStocks[index].low ?? " - "
+            
+        case "high":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].hig)
+            str = homeViewModel.allStocks[index].hig ?? " - "
+            
+        case "buy":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].buy)
+            str = homeViewModel.allStocks[index].buy ?? " - "
+        case "sel":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].sel)
+            str = homeViewModel.allStocks[index].sel ?? " - "
+        case "pdc":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].pdc)
+            str = homeViewModel.allStocks[index].pdc ?? " - "
+        case "cei":
+             dou = convertToDouble(doubleString: homeViewModel.allStocks[index].cei)
+            str = homeViewModel.allStocks[index].cei ?? " - "
+        case "flo":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].flo)
+            str = homeViewModel.allStocks[index].flo ?? " - "
+        case "gco":
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].gco)
+            str = homeViewModel.allStocks[index].gco ?? " - "
+        default:
+            dou = convertToDouble(doubleString: homeViewModel.allStocks[index].las)
+            str = homeViewModel.allStocks[index].las ?? " - "
         }
+        
+        return (dou,str)
     }
 }

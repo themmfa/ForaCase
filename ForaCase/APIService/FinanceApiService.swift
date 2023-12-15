@@ -43,12 +43,19 @@ class FinanceApiService {
         return resultString
     }
     
+    func seperateAllFilter(filterList:[FilterParameters]) -> String? {
+        guard let tkes = filterList.map({ $0.key }) as? [String] else {return nil }
+        let resultString = tkes.joined(separator: ",")
+        return resultString
+    }
     
-    func getAllStocks() async throws -> [Stock] {
+    
+    func getAllStocks(stocks:Stocks?) async throws -> [Stock] {
         do {
-            guard let stocks = try await getAllStocksInfo() else {return []}
+            guard let stocks = stocks else {return []}
             guard let keys = seperateAllString(stockList: stocks.mypageDefaults ?? []) else { return []}
-            guard let request = getRequest(url: "ForeksMobileInterview?fields=pdd,las&stcs=\(keys)") else {return []}
+            guard let filters = seperateAllFilter(filterList: stocks.mypage ?? []) else { return []}
+            guard let request = getRequest(url: "ForeksMobileInterview?fields=\(filters)&stcs=\(keys)") else {return []}
             let (data, _) = try await URLSession.shared.data(for: request)
             let decoder = JSONDecoder()
             let response = try decoder.decode(StockInfoList.self, from: data)

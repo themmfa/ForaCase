@@ -20,9 +20,9 @@ struct FilterParameters: Codable,Equatable {
 
 // MARK: - MypageDefault
 struct Stock: Codable,Equatable {
-    var cod, gro, tke, def,clo,pdd,las: String?
-    var difference:Double?
-    var differencePercentage:Double?
+    var cod, gro, tke, def,clo, flo, cei: String?
+    let pdd, low, sel, buy: String?
+    let ddi, hig, las, pdc, gco: String?
 }
 
 // MARK: - Stocks
@@ -33,5 +33,7 @@ struct StockInfoList: Codable {
 
 // MARK: - L
 struct UpdatedStockInfo: Codable {
-    let tke, clo, pdd, las: String?
+    let tke, clo, flo, cei: String?
+    let pdd, low, sel, buy: String?
+    let ddi, hig, las, pdc: String?
 }

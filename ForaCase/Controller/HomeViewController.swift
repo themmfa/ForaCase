@@ -12,15 +12,14 @@ class HomeViewController: UIViewController {
     let homeViewModel = HomeViewModel()
     var activityIndicator = CustomActivityIndicator()
     var timer:Timer?
-    var selectedData:String = "Fark"
+    lazy var selectedData:String = "las"
     
     deinit {
         timer?.invalidate()
     }
     
-    let priceDifferenceDropdown: DropDown = {
+    lazy var priceDifferenceDropdown: DropDown = {
         let dropdownMenu = DropDown()
-        dropdownMenu.dataSource = ["Fark","%Fark"]
         return dropdownMenu
     }()
     
@@ -48,7 +47,6 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         activityIndicator.startAnimating(in: self)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(refreshList), userInfo: nil, repeats: true)
-        homeViewModel.getAllStocks()
     }
     
     @objc func refreshList(){
@@ -59,20 +57,21 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     func layout(){
         priceDifferenceDropdown.anchorView = dropdownView
-        priceDifferenceDropdownButton.setTitle(selectedData, for: .normal)
+        let selectedItemText = self.homeViewModel.stocks?.mypage?.first(where: ({$0.key == self.selectedData}))
+        priceDifferenceDropdownButton.setTitle(selectedItemText?.name ?? "Son", for: .normal)
     }
 
     func priceDifferenceSelectionAction(){
         priceDifferenceDropdown.selectionAction = { index, item in
-            self.priceDifferenceDropdownButton.setTitle(item, for: .normal)
-            self.selectedData = item
+            self.selectedData = self.homeViewModel.stocks?.mypage?[index].key ?? "las"
+            self.priceDifferenceDropdownButton.setTitle(self.homeViewModel.stocks?.mypage?[index].name ?? "Son", for: .normal)
         }
     }
     
     func showErrorDialog(message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { action in
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.refreshList), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.refreshList), userInfo: nil, repeats: true)
         }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
@@ -84,6 +83,8 @@ extension HomeViewController:HomeViewModelDelegate {
         if response.isSuccess {
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
+                let stringArray: [String] = self?.homeViewModel.stocks?.mypage?.map { $0.name ?? "" } ?? []
+                self?.priceDifferenceDropdown.dataSource = stringArray
                 self?.customCollectionView.reloadData()
             }
         }
@@ -108,21 +109,9 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.stockNameLabel.text = homeViewModel.allStocks[indexPath.row].cod ?? ""
         cell.lastChangedTimeLabel.text = homeViewModel.allStocks[indexPath.row].clo ?? ""
         cell.lastPriceTable.text = homeViewModel.allStocks[indexPath.row].las ?? ""
-        let difference = Utils.shared.getSelectedData(selectedData: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
-        cell.differenceLabel.text = "\(selectedData == "Fark" ? "" : "%")\(String(format: "%.4f", difference))"
-        if difference == 0.0 {
-            cell.differenceLabel.textColor = .gray
-            cell.arrowImageView.backgroundColor = .gray
-            cell.arrowImageView.image = nil
-        }else if difference > 0{
-            cell.arrowImageView.backgroundColor = .green
-            cell.differenceLabel.textColor = .green
-            cell.arrowImageView.image = UIImage(systemName: "arrow.up")
-        }else{
-            cell.arrowImageView.backgroundColor = .red
-            cell.differenceLabel.textColor = .red
-            cell.arrowImageView.image = UIImage(systemName: "arrow.down")
-        }
+        var (difference,differenceString) = Utils.shared.getSelectedItemValue(selectedItemKey: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
+        cell.differenceLabel.text = differenceString ?? ""
+        homeViewModel.handleUIChanges(cell: cell, difference: difference)
         return cell
     }
     
