@@ -63,7 +63,7 @@ class HomeViewModel {
         }
         stringToDouble.removeAll(where: ({$0 == "%"}))
         let doubleValue = Utils.shared.convertToDouble(doubleString: stringToDouble)
-        cell.differenceLabel.textColor = selectedItem == "las" ? .gray : (doubleValue ?? 0.0 > 0) ? .green : (doubleValue ?? 0.0 < 0) ? .red : .gray
+        cell.differenceLabel.textColor = shouldChangeColor(selectedItem: selectedItem) ? (doubleValue ?? 0.0 > 0) ? .green : (doubleValue ?? 0.0 < 0) ? .red : .gray : .gray 
         cell.arrowImageView.backgroundColor = (difference > 0) ? .green : (difference < 0) ? .red : .gray
         cell.arrowImageView.image = (difference > 0) ? UIImage(systemName: "arrow.up") : (difference < 0) ? UIImage(systemName: "arrow.down") : nil
     }
@@ -72,5 +72,11 @@ class HomeViewModel {
         cell.differenceLabel.textColor = .gray
         cell.arrowImageView.backgroundColor = .gray
         cell.arrowImageView.image = nil
+    }
+    
+    func shouldChangeColor(selectedItem:String)->Bool{
+        if selectedItem == "pdd" || selectedItem == "ddi" {
+            return true
+        }else{return false}
     }
 }
