@@ -23,6 +23,7 @@ struct Stock: Codable,Equatable {
     var cod, gro, tke, def,clo, flo, cei: String?
     let pdd, low, sel, buy: String?
     let ddi, hig, las, pdc, gco: String?
+    let difference:Double?
 }
 
 // MARK: - Stocks

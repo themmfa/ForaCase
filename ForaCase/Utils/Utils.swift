@@ -17,7 +17,7 @@ class Utils {
         for stock in stocks ?? [] {
             for newStock in newStocks ?? [] {
                 if stock.tke == newStock.tke {
-                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, flo: newStock.flo, cei: newStock.cei, pdd: newStock.pdd, low: newStock.low, sel: newStock.sel, buy: newStock.buy, ddi: newStock.ddi, hig: newStock.hig, las: newStock.las, pdc: newStock.pdc,gco: stock.gco)
+                    let newestStock = Stock(cod: stock.cod, gro: stock.gro, tke: stock.tke, def: stock.def, clo: newStock.clo, flo: newStock.flo, cei: newStock.cei, pdd: newStock.pdd, low: newStock.low, sel: newStock.sel, buy: newStock.buy, ddi: newStock.ddi, hig: newStock.hig, las: newStock.las, pdc: newStock.pdc,gco: stock.gco,difference: stock.difference)
                     updatedList.append(newestStock)
                 }
             }
@@ -31,27 +31,25 @@ class Utils {
         return Double(replacedString)
     }
     
-    func getSelectedItemValue(selectedItemKey: String, homeViewModel: HomeViewModel, index: Int) -> (Double?, String) {
+    func getSelectedItemValue(selectedItemKey: String, homeViewModel: HomeViewModel, index: Int) -> String {
         let stock = homeViewModel.allStocks[index]
-
-        var dou: Double?
         var str: String = " - "
 
         switch selectedItemKey {
-        case "las": (dou, str) = (convertToDouble(doubleString: stock.las), stock.las ?? str)
-        case "pdd": (dou, str) = (convertToDouble(doubleString: stock.pdd), "%\(stock.pdd ?? str)")
-        case "ddi": (dou, str) = (convertToDouble(doubleString: stock.ddi), stock.ddi ?? str)
-        case "low": (dou, str) = (convertToDouble(doubleString: stock.low), stock.low ?? str)
-        case "high": (dou, str) = (convertToDouble(doubleString: stock.hig), stock.hig ?? str)
-        case "buy": (dou, str) = (convertToDouble(doubleString: stock.buy), stock.buy ?? str)
-        case "sel": (dou, str) = (convertToDouble(doubleString: stock.sel), stock.sel ?? str)
-        case "pdc": (dou, str) = (convertToDouble(doubleString: stock.pdc), stock.pdc ?? str)
-        case "cei": (dou, str) = (convertToDouble(doubleString: stock.cei), stock.cei ?? str)
-        case "flo": (dou, str) = (convertToDouble(doubleString: stock.flo), stock.flo ?? str)
-        case "gco": (dou, str) = (convertToDouble(doubleString: stock.gco), stock.gco ?? str)
-        default: (dou, str) = (convertToDouble(doubleString: stock.las), stock.las ?? str)
+        case "las": str = stock.las ?? str
+        case "pdd": str = "%\(stock.pdd ?? str)"
+        case "ddi": str = stock.ddi ?? str
+        case "low": str = stock.low ?? str
+        case "high": str = stock.hig ?? str
+        case "buy": str = stock.buy ?? str
+        case "sel": str = stock.sel ?? str
+        case "pdc": str = stock.pdc ?? str
+        case "cei": str = stock.cei ?? str
+        case "flo": str = stock.flo ?? str
+        case "gco": str = stock.gco ?? str
+        default: str = stock.las ?? str
         }
 
-        return (dou, str)
+        return str
     }
 }

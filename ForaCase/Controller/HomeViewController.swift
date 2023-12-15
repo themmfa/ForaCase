@@ -109,9 +109,9 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         cell.stockNameLabel.text = homeViewModel.allStocks[indexPath.row].cod ?? ""
         cell.lastChangedTimeLabel.text = homeViewModel.allStocks[indexPath.row].clo ?? ""
         cell.lastPriceTable.text = homeViewModel.allStocks[indexPath.row].las ?? ""
-        var (difference,differenceString) = Utils.shared.getSelectedItemValue(selectedItemKey: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
-        cell.differenceLabel.text = differenceString ?? ""
-        homeViewModel.handleUIChanges(cell: cell, difference: difference)
+        var differenceString = Utils.shared.getSelectedItemValue(selectedItemKey: selectedData, homeViewModel: homeViewModel, index: indexPath.row)
+        cell.differenceLabel.text = differenceString 
+        homeViewModel.handleUIChanges(cell: cell, difference: homeViewModel.allStocks[indexPath.row].difference,stringToDouble: differenceString)
         return cell
     }
     
